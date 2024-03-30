@@ -2,6 +2,14 @@ const express = require("express");
 const path = require("path");
 const bots = require("./src/botsData");
 const shuffle = require("./src/shuffle");
+var Rollbar = require('rollbar')
+var rollbar = new Rollbar({
+  accessToken: 'd0d74f5861ed4e8aa1c182e1c9a0a819',
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+})
+
+rollbar.log('Hello world!')
 
 const playerRecord = {
   wins: 0,

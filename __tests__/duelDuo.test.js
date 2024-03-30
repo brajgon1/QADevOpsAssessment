@@ -17,10 +17,24 @@ describe("Duel Duo tests", () => {
   });
 });
 
-// test("When bot is removed it goes back to choices", async () => {
-//   await driver.get("http://localhost:8000");
-//   const botToAdd = await driver.findElement(By.id(""));
-//   await botToAdd.click();
-//   const removeButton = await driver.findElement(By.id(""));
-//   await removeButton.click();
-// })
+test("clicking the Draw button displays the div with id choices", async () => {
+  await driver.get("http://localhost:8000");
+  const drawBtn = await driver.findElement(By.id("draw"));
+  await drawBtn.click();
+  const choicesDiv = await driver.findElement(By.id("choices"));
+  const display = await choicesDiv.isDisplayed();
+  expect(display).toBe(true);
+})
+
+
+test("Check that clicking an “Add to Duo” button displays the div with id player duo", async () => {
+  await driver.get("http://localhost:8000");
+  const drawBtn = await driver.findElement(By.id("draw"));
+  await drawBtn.click();
+  const choicesDiv = await driver.findElement(By.className("bot-btn"));
+  await choicesDiv.click();
+  const playerDuo = await driver.findElement(By.id("player-duo"));
+  const display = await playerDuo.isDisplayed();
+  expect(display).toBe(true);
+})
+
