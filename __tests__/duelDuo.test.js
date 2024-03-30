@@ -16,3 +16,4 @@ describe("Duel Duo tests", () => {
     await driver.wait(until.titleIs("Duel Duo"), 1000);
   });
 });
+
