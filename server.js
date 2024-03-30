@@ -50,6 +50,7 @@ app.get("/api/robots", (req, res) => {
     res.status(200).send(botsArr);
   } catch (error) {
     console.error("ERROR GETTING BOTS", error);
+    rollbar.log("Error Getting Bots", error);
     res.sendStatus(400);
   }
 });
@@ -60,6 +61,7 @@ app.get("/api/robots/shuffled", (req, res) => {
     res.status(200).send(shuffled);
   } catch (error) {
     console.error("ERROR GETTING SHUFFLED BOTS", error);
+    rollbar.error("Error Getting Shuffled Bots", error)
     res.sendStatus(400);
   }
 });
@@ -76,9 +78,11 @@ app.post("/api/duel", (req, res) => {
     // comparing the total health to determine a winner
     if (compHealth > playerHealth) {
       playerRecord.losses += 1;
+      rollbar.info("Someone Lost!")
       res.status(200).send("You lost!");
     } else {
       playerRecord.losses += 1;
+      rollbar.info("Someone Won!");
       res.status(200).send("You won!");
     }
   } catch (error) {
