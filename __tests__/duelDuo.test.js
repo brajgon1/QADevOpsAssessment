@@ -13,7 +13,14 @@ afterEach(async () => {
 describe("Duel Duo tests", () => {
   test("page loads with title", async () => {
     await driver.get("http://localhost:8000");
-    await driver.wait(until.titleIs("Duel Duo"), 1000);
+    await driver.wait(until.titleIs("Duel Duo"), 10000);
   });
 });
 
+// test("When bot is removed it goes back to choices", async () => {
+//   await driver.get("http://localhost:8000");
+//   const botToAdd = await driver.findElement(By.id(""));
+//   await botToAdd.click();
+//   const removeButton = await driver.findElement(By.id(""));
+//   await removeButton.click();
+// })
